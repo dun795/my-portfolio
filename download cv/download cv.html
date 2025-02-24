@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download CV</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="container">
@@ -30,21 +28,43 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <div class="g-recaptcha" data-sitekey="6LdWVeEqAAAAAO3CH6sMLt3thqM5jwBXyYJeLlzd"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <!-- Google Drive File Link -->
-                        <a href="https://drive.google.com/uc?export=download&id=your-file-id" id="downloadLink" style="display:none;">
-                            <button type="button" id="downloadBtn" disabled>Download CV</button>
-                        </a>
+                        <button type="button" id="downloadBtn">Download CV</button>
                     </td>
                 </tr>
             </table>
         </form>
-    </div>
+    </div><script>
+    // Function to handle form submission and data storage
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const contact = document.getElementById("contact").value;
 
-    <script src="script.js"></script>
+        // Store form data in a JavaScript object
+        const formData = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            contact: contact
+        };
+
+        console.log("Form Data:", formData); // Log the data (or process it as needed)
+
+        if (firstName && lastName && email && contact) {
+            // Trigger file download from Google Drive
+            const link = document.createElement("a");
+            link.href = "https://drive.google.com/uc?export=download&id=1bGz92P6QnlyJ6b1AAMn5_4jEIO8OyJVV"; // Direct download link
+            link.target = "_blank";
+            link.download = "CV.pdf"; // Specify the file name
+            link.click();
+
+            alert("Your CV is now downloading!");
+        } else {
+            alert("Please fill out all fields before downloading.");
+        }
+    });
+</script>
+
 </body>
 </html>
