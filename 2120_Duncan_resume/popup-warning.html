@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warning: Image Download Prohibited</title>
+    <script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Basic styling for the warning pop-up */
+        .popup-warning {
+            display: none;
+            position: absolute;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 9999;
+        }
+
+        img {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Our Website</h1>
+        <p>Please be aware that downloading any images on this website is strictly prohibited!</p>
+        <img src="image1.jpg" alt="Image 1" width="300">
+        <img src="image2.jpg" alt="Image 2" width="300">
+    </div>
+
+    <!-- Pop-up warning -->
+    <div id="popupWarning" class="popup-warning" role="tooltip">
+        <p>Downloading images is prohibited on this site!</p>
+    </div>
+
+    <script>
+        // Function to show the popup warning
+        function showPopup(event) {
+            const popup = document.getElementById('popupWarning');
+            const rect = event.target.getBoundingClientRect(); // Get the image position
+            const x = rect.left + window.scrollX;
+            const y = rect.top + window.scrollY - 40; // Position it slightly above the image
+
+            popup.style.left = `${x}px`;
+            popup.style.top = `${y}px`;
+            popup.style.display = 'block';
+        }
+
+        // Function to hide the popup warning
+        function hidePopup() {
+            const popup = document.getElementById('popupWarning');
+            popup.style.display = 'none';
+        }
+
+        // Get all images on the page
+        const images = document.querySelectorAll('img');
+
+        // Add event listeners to show the warning when hovering over images
+        images.forEach(image => {
+            image.addEventListener('mouseover', showPopup);
+            image.addEventListener('mouseout', hidePopup);
+        });
+    </script>
+
+</body>
+</html>
