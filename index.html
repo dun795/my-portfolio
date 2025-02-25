@@ -319,33 +319,38 @@
         </div><!-- container -->
     </section>
 
+<section class="contact section-padding pt-0" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-12">
+        <!-- Change method to POST and specify action endpoint -->
+        <form action="/api/contact" method="POST" class="contact-form webform" role="form">
+          
+          <!-- Full Name Field -->
+          <div class="form-group d-flex flex-column-reverse">
+            <input type="text" class="form-control" name="cf-name" id="cf-name" placeholder="Your Name" required>
+            <label for="cf-name" class="webform-label">Full Name</label>
+          </div>
 
-     <section class="contact section-padding pt-0" id="contact">
-      <div class="container">
-        <div class="row">
+          <!-- Email Field -->
+          <div class="form-group d-flex flex-column-reverse">
+            <input type="email" class="form-control" name="cf-email" id="cf-email" placeholder="Your Email" required>
+            <label for="cf-email" class="webform-label">Your Email</label>
+          </div>
 
-          <div class="col-lg-6 col-md-6 col-12">
-            <form action="#" method="get" class="contact-form webform"  role="form">
-                
-                <div class="form-group d-flex flex-column-reverse">
-                    <input type="text" class="form-control" name="cf-name" id="cf-name" placeholder="Your Name">
+          <!-- Message Field -->
+          <div class="form-group d-flex flex-column-reverse">
+            <textarea class="form-control" rows="5" name="cf-message" id="cf-message" placeholder="Your Message" required></textarea>
+            <label for="cf-message" class="webform-label">Message</label>
+          </div>
 
-                    <label for="cf-name" class="webform-label">Full Name</label>
-                </div>
-
-                <div class="form-group d-flex flex-column-reverse">
-                    <input type="email" class="form-control" name="cf-email" id="cf-email" placeholder="Your Email">
-
-                    <label for="cf-email" class="webform-label">Your Email</label>
-                </div>
-
-                <div class="form-group d-flex flex-column-reverse">
-                    <textarea class="form-control" rows="5" name="cf-message" id="cf-message" placeholder="Your Message"></textarea>
-
-                    <label for="cf-message" class="webform-label">Message</label>
-                </div>
-
-                <button type="submit" class="form-control" id="submit-button" name="submit">Send</button>
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
                 <div>
                   <button></button>
                 </div>
@@ -397,6 +402,30 @@
      <script src="js/custom.js"></script>
      <script>src="js/popup-warning.js"</script>
      
+
+<script>
+    async function sendForm(event) {
+        event.preventDefault();
+
+        const form = document.getElementById("contact-form");
+        const formData = new FormData(form);
+
+        const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
+        });
+
+        if (response.ok) {
+            alert("Message sent successfully!");
+        } else {
+            alert("Failed to send message. Please try again.");
+        }
+    }
+</script>
+     </script>
 
 </body>
 </html>
