@@ -397,29 +397,5 @@
      <script>src="js/popup-warning.js"</script>
      
 
-<script>
-    async function sendForm(event) {
-        event.preventDefault();
-
-        const form = document.getElementById("contact-form");
-        const formData = new FormData(form);
-
-        const response = await fetch("/api/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Object.fromEntries(formData)),
-        });
-
-        if (response.ok) {
-            alert("Message sent successfully!");
-        } else {
-            alert("Failed to send message. Please try again.");
-        }
-    }
-</script>
-     </script>
-
 </body>
 </html>
